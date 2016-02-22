@@ -1,21 +1,25 @@
-var React = require("react");
+import React from "react";
 
-var Menu = require('material-ui/lib/menus/menu');
-var MenuItem = require('material-ui/lib/menus/menu-item');
-var MenuDivider = require('material-ui/lib/menus/menu-divider');
+export default class Menu extends React.Component {
 
+    constructor(props) {
+        super(props);
+    }
 
-var AppMenu = React.createClass({
-    render: function() {
+    navigate(location){
+        this.props.onNavigate(location);
+    }
+
+    menuClassName(location) {
+        return location === this.props.view ? "menu-item--active" : "menu-item";
+    }
+
+    render() {
         return(
-            <Menu>
-                <MenuItem primaryText="Maps" />
-                <MenuItem primaryText="Books" />
-                <MenuItem primaryText="Flights" />
-                <MenuItem primaryText="Apps" />
-            </Menu>
+            <div className="menu">
+                <div className={this.menuClassName('start')} onClick={() => this.navigate('start')}>Start</div>
+                <div className={this.menuClassName('contact')} onClick={() => this.navigate('contact')}>Contact</div>
+            </div>
         );
     }
-});
-
-module.exports = AppMenu;
+};

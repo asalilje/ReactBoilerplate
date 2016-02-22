@@ -14,5 +14,8 @@ module.exports = {
 			{ test: /\.(jsx|js)$/, loader: 'babel-loader' }
 		]
 	},
+	externals: {
+		"react": "React"
+	},
 	devtool: "#source-map"
 };

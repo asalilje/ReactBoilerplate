@@ -1,15 +1,13 @@
 import React from 'react';
 
-export default class Start extends React.Component {
-
+export default class Contact extends React.Component {
     constructor(props) {
         super(props);
     }
 
     render() {
         return(
-            <div>Startsidan</div>
+            <div>Contact page!</div>
         );
     }
-
-};
+}

@@ -1,41 +1,33 @@
-var React = require("react");
-var AppMenu = require("./menu");
-var Start = require("./start");
-var mui = require("material-ui");
+import React from "react";
+import Menu from "./menu";
+import Start from "./start";
 
-var ThemeManager = new mui.Styles.ThemeManager();
-
-var App = React.createClass({
-    getChildContext: function() {
-        return {
-            muiTheme: ThemeManager.getCurrentTheme()
+export default class App extends React.Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            view: 'start'
         };
-    },
-    getInitialState: function() {
-        return {view: 'start'}
-    },
-    navigateTo: function(view) {
+    }
+
+    navigateTo(view) {
         this.setState({view: view})
-    },
-    renderContent: function() {
+    }
+
+    renderContent() {
         switch(this.state.view) {
             case 'start':
                 return <Start />;
             default: return null;
         }
-    },
-    render: function() {
+    }
+
+    render() {
         return (
             <div>
-                <AppMenu view={this.state.view} navigateTo={this.navigateTo} />
+                <Menu view={this.state.view} onNavigate={this.navigateTo.bind(this)} />
                 <div>{this.renderContent()}</div>
             </div>
         );
     }
-});
-
-App.childContextTypes = {
-    muiTheme: React.PropTypes.object
 };
-
-module.exports = App;
